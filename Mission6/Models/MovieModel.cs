@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mission6.Models
 {
+    // The model for information we put in the movies database
     public class MovieModel
     {
         [Key]

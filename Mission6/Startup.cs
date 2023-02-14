@@ -28,6 +28,7 @@ namespace Mission6
             services.AddControllersWithViews();
             services.AddDbContext<MovieInfoContext>(options =>
             {
+                // Set up connection to the SQLite Database
                 options.UseSqlite(Configuration["ConnectionStrings:MovieConnection"]);
             });
         }
