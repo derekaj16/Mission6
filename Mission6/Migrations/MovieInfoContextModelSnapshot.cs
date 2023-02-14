@@ -22,9 +22,11 @@ namespace Mission6.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DirectorName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Edited")
@@ -34,12 +36,15 @@ namespace Mission6.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(25);
 
                     b.Property<string>("Rating")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<ushort>("Year")
@@ -48,6 +53,38 @@ namespace Mission6.Migrations
                     b.HasKey("MovieId");
 
                     b.ToTable("movies");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = 1,
+                            Category = "Action/Adventure",
+                            DirectorName = "Joss Whedon",
+                            Edited = false,
+                            Rating = "PG-13",
+                            Title = "The Avengers",
+                            Year = (ushort)2012
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            Category = "Action/Adventure",
+                            DirectorName = "Tim Burton",
+                            Edited = false,
+                            Rating = "PG-13",
+                            Title = "Batman",
+                            Year = (ushort)1989
+                        },
+                        new
+                        {
+                            MovieId = 3,
+                            Category = "Action/Adventure",
+                            DirectorName = "Christopher Nolan",
+                            Edited = false,
+                            Rating = "PG-13",
+                            Title = "The Dark Knight",
+                            Year = (ushort)2008
+                        });
                 });
 #pragma warning restore 612, 618
         }

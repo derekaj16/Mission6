@@ -12,10 +12,12 @@ namespace Mission6.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private MovieInfoContext _movieContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MovieInfoContext movieInfo)
         {
             _logger = logger;
+            _movieContext = movieInfo;
         }
 
         public IActionResult Index()
@@ -37,6 +39,9 @@ namespace Mission6.Controllers
         [HttpPost]
         public IActionResult EnterMovie(MovieModel movie)
         {
+            _movieContext.Add(movie);
+            _movieContext.SaveChanges();
+
             return View();
         }
 

@@ -85,31 +85,36 @@ form {
     border-radius: 10px;
 }
 
-    form input {
-        width: 100%;
-        border: 1px solid rgba(0,0,0,.2);
-        border-radius: 5px;
-        padding: 5px;
-        margin-bottom: 10px;
-    }
+form input[type=number], form input[type=text] {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
 
         form input:focus {
             outline: 2px solid rgb(45, 191, 216);
         }
 
-    form button {
-        background-color: Highlight;
-        padding: 10px;
-        border-radius: 5px;
-        color: white;
-        text-align: center;
-        transition: .25s;
-        font-size: 16px;
-        margin: 15px 0;
-        width: 100%;
-        cursor: pointer;
-    }
+form button {
+    background-color: Highlight;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    transition: .25s;
+    font-size: 16px;
+    margin: 15px 0;
+    width: 100%;
+    cursor: pointer;
+}
 
-        form button:hover {
-            background-color: deepskyblue;
-        }
+form button:hover {
+    background-color: deepskyblue;
+}
+
+input[type=checkbox] {
+    display: inline;
+    margin-right: 10px;
+}
