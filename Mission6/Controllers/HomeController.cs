@@ -35,7 +35,7 @@ namespace Mission6.Controllers
         }
 
         [HttpPost]
-        public IActionResult EnterMovie(MovieModel model)
+        public IActionResult EnterMovie(MovieModel movie)
         {
             return View();
         }
