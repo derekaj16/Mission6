@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mission6.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,16 +8,17 @@ using System.Threading.Tasks;
 namespace Mission6.Models
 {
     // The model for information we put in the movies database
-    public class MovieModel
+    public class Movie
     {
         [Key]
         [Required]
         public int MovieId { get; set; }
-        [Required]
-        public string Category { get; set; }
+        [Required(ErrorMessage = "Please pick a category")]
+        public int CategoryID { get; set; }
+        public Category CategoryModel { get; set; }
         [Required]
         public string Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please insert a year")]
         public ushort Year { get; set; }
         [Required]
         public string DirectorName { get; set; }

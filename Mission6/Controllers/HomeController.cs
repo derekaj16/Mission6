@@ -33,18 +33,79 @@ namespace Mission6.Controllers
         [HttpGet]
         public IActionResult EnterMovie()
         {
+            ViewBag.Categories = _movieContext.categories.ToList();
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult EnterMovie(MovieModel movie)
+        public IActionResult EnterMovie(Movie movie)
         {
-            _movieContext.Add(movie);
-            _movieContext.SaveChanges();
+            // Check form validity before allowing changes
+            if (ModelState.IsValid)
+            {
+                _movieContext.Add(movie);
+                _movieContext.SaveChanges();
 
-            return View();
+                return View();
+            }
+            else // Redirect if invalid
+            {
+                ViewBag.Categories = _movieContext.categories.ToList();
+                return View(movie);
+            }
+            
+        }
+        public IActionResult MovieList()
+        {
+
+            ViewBag.Categories = _movieContext.categories.ToList();
+            var movies = _movieContext.movies.ToList();
+
+            return View(movies);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int movieid)
+        {
+            ViewBag.Categories = _movieContext.categories.ToList();
+            var movie = _movieContext.movies.Single(m => m.MovieId == movieid);
+
+            return View("EnterMovie", movie);
+        }
+        [HttpPost]
+        public IActionResult Edit(Movie movie)
+        {
+            // Check form validity before allowing changes
+            if (ModelState.IsValid)
+            {
+                _movieContext.Update(movie);
+                _movieContext.SaveChanges();
+
+                return RedirectToAction("MovieList");
+            }
+            else // Redirect if invalid
+            {
+                ViewBag.Categories = _movieContext.categories.ToList();
+                return View(movie);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int movieid) // Confirmation page for deleting a movie
+        {
+            var movie = _movieContext.movies.Single(m => m.MovieId == movieid);
+            return View(movie);
+        }
+        [HttpPost]
+        public IActionResult Delete(Movie movie)
+        {
+            _movieContext.movies.Remove(movie);
+            _movieContext.SaveChanges();
+
+            return RedirectToAction("MovieList");
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
